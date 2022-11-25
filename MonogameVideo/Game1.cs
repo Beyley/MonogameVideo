@@ -1,4 +1,5 @@
-﻿using Furball.Engine.Engine.Graphics.Video;
+﻿using System;
+using Furball.Engine.Engine.Graphics.Video;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -45,6 +46,12 @@ public class Game1 : Game {
 			Exit();
 
 		base.Update(gameTime);
+	}
+
+	protected override void OnExiting(object sender, EventArgs args) {
+		base.OnExiting(sender, args);
+		
+		this.VideoDecoder.Dispose();
 	}
 
 	protected override void Draw(GameTime gameTime) {
