@@ -1,0 +1,59 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+        <RollForward>Major</RollForward>
+        <PublishReadyToRun>false</PublishReadyToRun>
+        <TieredCompilation>false</TieredCompilation>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+    <PropertyGroup>
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+        <ApplicationIcon>Icon.ico</ApplicationIcon>
+    </PropertyGroup>
+    <ItemGroup>
+        <None Remove="Icon.ico" />
+        <None Remove="Icon.bmp" />
+    </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Include="Icon.ico" />
+        <EmbeddedResource Include="Icon.bmp" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="FFmpeg.AutoGen" Version="5.1.1" />
+        <PackageReference Include="Kettu" Version="1.4.0" />
+        <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" />
+        <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
+        <PackageReference Include="Silk.NET.Core" Version="2.16.0" />
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Include="..\Furball\Furball.Engine\Engine\Graphics\Video\FFmpegCodec.cs">
+        <Link>Video\FFmpegCodec.cs</Link>
+      </Compile>
+      <Compile Include="..\Furball\Furball.Engine\Engine\Graphics\Video\FFmpegCodecContext.cs">
+        <Link>Video\FFmpegCodecContext.cs</Link>
+      </Compile>
+      <Compile Include="..\Furball\Furball.Engine\Engine\Graphics\Video\FFmpegFormatContext.cs">
+        <Link>Video\FFmpegFormatContext.cs</Link>
+      </Compile>
+      <Compile Include="..\Furball\Furball.Engine\Engine\Graphics\Video\FFmpegFrame.cs">
+        <Link>Video\FFmpegFrame.cs</Link>
+      </Compile>
+      <Compile Include="..\Furball\Furball.Engine\Engine\Graphics\Video\FFmpegPacket.cs">
+        <Link>Video\FFmpegPacket.cs</Link>
+      </Compile>
+      <Compile Include="..\Furball\Furball.Engine\Engine\Graphics\Video\FFmpegStream.cs">
+        <Link>Video\FFmpegStream.cs</Link>
+      </Compile>
+      <Compile Include="..\Furball\Furball.Engine\Engine\Graphics\Video\FFmpegSwsContext.cs">
+        <Link>Video\FFmpegSwsContext.cs</Link>
+      </Compile>
+      <Compile Include="..\Furball\Furball.Engine\Engine\Graphics\Video\VideoDecoder.cs">
+        <Link>Video\VideoDecoder.cs</Link>
+      </Compile>
+    </ItemGroup>
+    <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
+        <Message Text="Restoring dotnet tools" Importance="High" />
+        <Exec Command="dotnet tool restore" />
+    </Target>
+</Project>
