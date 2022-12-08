@@ -27,6 +27,9 @@
         <PackageReference Include="Silk.NET.Core" Version="2.16.0" />
     </ItemGroup>
     <ItemGroup>
+      <Compile Include="..\Furball\Furball.Engine\Engine\Graphics\Video\AVHWDeviceTypePerformanceComparer.cs">
+        <Link>Video\AVHWDeviceTypePerformanceComparer.cs</Link>
+      </Compile>
       <Compile Include="..\Furball\Furball.Engine\Engine\Graphics\Video\FFmpegCodec.cs">
         <Link>Video\FFmpegCodec.cs</Link>
       </Compile>
@@ -47,6 +50,9 @@
       </Compile>
       <Compile Include="..\Furball\Furball.Engine\Engine\Graphics\Video\FFmpegSwsContext.cs">
         <Link>Video\FFmpegSwsContext.cs</Link>
+      </Compile>
+      <Compile Include="..\Furball\Furball.Engine\Engine\Graphics\Video\HardwareDecoderType.cs">
+        <Link>Video\HardwareDecoderType.cs</Link>
       </Compile>
       <Compile Include="..\Furball\Furball.Engine\Engine\Graphics\Video\VideoDecoder.cs">
         <Link>Video\VideoDecoder.cs</Link>

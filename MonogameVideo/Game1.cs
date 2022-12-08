@@ -1,8 +1,10 @@
 ﻿using System;
 using Furball.Engine.Engine.Graphics.Video;
+using Kettu;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Silk.NET.Core.Native;
 
 namespace MonogameVideo;
 
@@ -24,15 +26,19 @@ public class Game1 : Game {
 	protected override void Initialize() {
 		// TODO: Add your initialization logic here
 
+		Logger.AddLogger(new ConsoleLogger());
+		Logger.StartLogging();
+
 		this.VideoDecoder = new VideoDecoder(4);
 
 		base.Initialize();
 	}
 
 	protected override void LoadContent() {
-		_spriteBatch = new SpriteBatch(this.GraphicsDevice);
+		this._spriteBatch = new SpriteBatch(this.GraphicsDevice);
 
-		this.VideoDecoder.Load("video.mp4");
+		this.VideoDecoder.Load("video.mp4", HardwareDecoderType.Any);
+		Console.WriteLine($"Using hardware codec type of {this.VideoDecoder.HwCodecType.ToHardwareDecoderType()}!");
 
 		this._graphics.PreferredBackBufferWidth  = this.VideoDecoder.Width;
 		this._graphics.PreferredBackBufferHeight = this.VideoDecoder.Height;
@@ -50,8 +56,10 @@ public class Game1 : Game {
 
 	protected override void OnExiting(object sender, EventArgs args) {
 		base.OnExiting(sender, args);
-		
+
 		this.VideoDecoder.Dispose();
+
+		Logger.StopLogging();
 	}
 
 	protected override void Draw(GameTime gameTime) {
